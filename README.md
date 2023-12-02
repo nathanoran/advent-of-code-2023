@@ -1,5 +1,5 @@
 # advent-of-code-2023
-Holds solutions to the advent of code puzzles for 2023
+Holds solutions to the [advent of code puzzles for 2023](https://adventofcode.com/2023).
 
 Doing this challenge with my siblings, we've set the goal of doing a different language each week
 
