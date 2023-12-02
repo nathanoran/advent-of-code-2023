@@ -55,7 +55,6 @@ def findOnesPlace (calibrationString):
 
 calibrationSum = 0
 for calibrationString in calibrations:
-    print(calibrationString)
     calibrationShort = findTensPlace(calibrationString) + findOnesPlace(calibrationString)
     calibrationSum += int(calibrationShort)
 
