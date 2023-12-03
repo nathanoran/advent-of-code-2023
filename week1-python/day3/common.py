@@ -65,13 +65,9 @@ def findAdjacentValues(engineSchematic: list[str], x: int, y: int):
     for value in findInLineValues(engineSchematic, x, y-1): 
         allValues.append(value)
 
-    leftValue = getValue(engineSchematic, x-1, y)
-    if (leftValue > -1):
-        allValues.append(leftValue)
-
-    rightValue = getValue(engineSchematic, x+1, y)
-    if (rightValue > -1):
-        allValues.append(rightValue)
+    # Middle values
+    for value in findInLineValues(engineSchematic, x, y):
+        allValues.append(value)
 
     # Below values
     for value in findInLineValues(engineSchematic, x, y+1):
