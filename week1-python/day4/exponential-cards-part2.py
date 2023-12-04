@@ -3,21 +3,13 @@ from common import convertStringIntList
 cardPile = open('day4/scratch-cards.txt', 'r')
 scratchCards: list[str] = cardPile.readlines()
 
-def calculateScore(winnersCount: int):
-    score = 0
-    if winnersCount < 1:
-        return score
-    for x in range(winnersCount):
-        if x == 0:
-            score = 1
-        elif x == 1:
-            score = 2
-        else:
-            score = score * 2
-    return score
+cardCounts: list[int] = []
 
-cumulativeScore = 0
-for card in scratchCards:
+for i in range(len(scratchCards)):
+    cardCounts.append(1)
+
+for i in range(len(scratchCards)):
+    card = scratchCards[i]
     [cardLabel, cardData] = card.split(':')
     [winners, cardNumbers] = cardData.split('|')
     winners = convertStringIntList(winners)
@@ -27,8 +19,13 @@ for card in scratchCards:
         if number in winners:
             print(f'{number} appears in {winners}')
             winnersCount += 1
-    cumulativeScore += calculateScore(winnersCount)
 
-print(cumulativeScore)
+    for j in range(winnersCount):
+        cardCounts[i + j + 1] += cardCounts[i]
+
+cumulativeCards = 0
+for count in cardCounts:
+    cumulativeCards += count
+print(cumulativeCards)
     
 
