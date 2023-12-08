@@ -13,9 +13,6 @@ class AlmanacMap:
     sourceMin: int = 0
     sourceMax: int = 0
 
-def getSourceMin(almanacMap: AlmanacMap):
-    return almanacMap.sourceMin
-
 def transformSeeds(maps: list[AlmanacMap], seeds: list[int]):
     transformedSeeds = []
     for seed in seeds:
