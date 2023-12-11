@@ -122,7 +122,7 @@ def compareHands(handA: Hand, handB: Hand):
     print('hand A and hand B are equivalent')
     return 0
 
-# 2-dimensional array first index is the hand type, secord is the sorted order
+# 2-dimensional array first index is the hand type, second is the sorted order
 hands: list[list[Hand]] = [[],[],[],[],[],[],[]]
 
 for line in allHands:
