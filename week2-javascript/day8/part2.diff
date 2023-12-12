@@ -1,0 +1,40 @@
+diff --git a/day8/part2-AAA.log b/day8/part2-ZZZ.log
+index ebf9cec..bfd6d82 100644
+--- a/day8/part2-AAA.log
++++ b/day8/part2-ZZZ.log
+@@ -1,19 +1,19 @@
+-Current Position: AAA
++Current Position: ZZZ
+ Direction: L
+-Map: (L: PBJ, R: RXK)
+-Current Position: PBJ
++Map: (L: RXK, R: PBJ)
++Current Position: RXK
+ Direction: L
+-Map: (L: XRF, R: TJR)
+-Current Position: XRF
++Map: (L: TJR, R: XRF)
++Current Position: TJR
+ Direction: R
+-Map: (L: NRN, R: QGR)
+-Current Position: QGR
++Map: (L: QGR, R: NRN)
++Current Position: NRN
+ Direction: R
+-Map: (L: HGB, R: VGX)
+-Current Position: VGX
++Map: (L: VGX, R: HGB)
++Current Position: HGB
+ Direction: R
+-Map: (L: MHN, R: VJQ)
+-Current Position: VJQ
++Map: (L: VJQ, R: MHN)
++Current Position: MHN
+ Direction: L
+ Map: (L: TVD, R: MVF)
+ Current Position: TVD
+@@ -51859,3 +51859,4 @@ Map: (L: QBD, R: QHH)
+ Current Position: QHH
+ Direction: R
+ Map: (L: DDD, R: ZZZ)
++navigate(ZZZ, ZZZ):  { finalPosition: 'ZZZ', steps: 17287 }
