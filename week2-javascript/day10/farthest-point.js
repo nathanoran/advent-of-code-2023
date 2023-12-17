@@ -1,4 +1,5 @@
 import fs from 'fs';
+import util from 'util';
 
 const fullMap = fs.readFileSync('day10/pipe-map.txt', 'utf-8');
 
@@ -29,10 +30,6 @@ while (i < rawMap.length) {
             start.i = i;
             start.j = j;
         }
-        // console.log('pipe context:')
-        // console.log([rawMap[i-1][j-1], rawMap[i-1][j], rawMap[i-1][j+1]]);
-        // console.log([rawMap[i][j-1], rawMap[i][j], rawMap[i][j+1]]);
-        // console.log([rawMap[i+1][j-1], rawMap[i+1][j], rawMap[i+1][j+1]]);
 
         // North Exit
         if (
@@ -117,4 +114,56 @@ while (evaluationQueue.length > 0) {
     // console.log('evaluationQueue:',evaluationQueue.map(({row: n, column: o}) => parsedMap[n][o]));
 }
 
-console.log('Furthest Distance in loop:',maxDistance);
+console.log('Furthest Distance in loop:', maxDistance);
+console.log('');
+
+// Part 2 Solution
+const resultMapVisual = [];
+let containedArea = 0;
+for (i = 0; i < parsedMap.length; i++) {
+    resultMapVisual.push([]);
+    let isCurrentlyInside = false;
+    let lastFBendValid = false;
+    let lastLBendValid = false;
+    for (let j = 0; j < parsedMap[i].length; j++) {
+        const pipe = parsedMap[i][j];
+        if (pipe.visited) {
+            if (pipe.pipe === '|') {
+                isCurrentlyInside = !isCurrentlyInside;
+                lastFBendValid = false;
+                lastLBendValid = false;
+            } else if (pipe.pipe === 'F') {
+                lastFBendValid = true;
+                lastLBendValid = false;
+            } else if (pipe.pipe === 'L') {
+                lastFBendValid = false;
+                lastLBendValid = true;
+            } else if (pipe.pipe === 'J' && lastFBendValid) {
+                isCurrentlyInside = !isCurrentlyInside;
+                lastFBendValid = false;
+            } else if (pipe.pipe === '7' && lastLBendValid) {
+                isCurrentlyInside = !isCurrentlyInside;
+                lastLBendValid = false;
+            } else if (!(pipe.pipe === '-' || pipe.pipe === 'S')) { // Or 'S' is added since I know that 'S' in my input is equivalent to a '-'
+                lastFBendValid = false;
+                lastLBendValid = false;
+            }
+            resultMapVisual[i].push(pipe.pipe);
+        } else {
+            lastFBendValid = false;
+            lastLBendValid = false;
+            if (isCurrentlyInside) {
+                resultMapVisual[i].push('I');
+                containedArea++;
+            } else {
+                resultMapVisual[i].push('O');
+            }
+            
+        }
+    }
+}
+
+resultMapVisual.forEach((line) => console.log(line.join('')));
+console.log('');
+
+console.log('Area contained by the loop:', containedArea);
