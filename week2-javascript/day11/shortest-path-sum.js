@@ -1,10 +1,16 @@
 import fs from 'fs';
+import dotenv from 'dotenv';
+dotenv.config({
+    path: 'day11/.env',
+});
 
 const fullMap = fs.readFileSync('day11/galaxy-map.txt', 'utf-8');
 
 const mapLines = fullMap.split(/\r?\n/);
 
 const rawMap = mapLines.map((line) => line.split(''));
+
+const EXPANSION_MULTIPLIER = (process.env.EXPANSION_DISTANCE || 2) - 1;
 
 const discoveredGalaxies = [];
 const galaxyColumns = new Set([]);
@@ -56,7 +62,7 @@ discoveredGalaxies.forEach((galaxyA, i) => {
             return column > smallestColumn && column < largestColumn;
         }).length;
 
-        const shortestDistance = observedVerticalDistance + observedHorizontalDistance + verticalExpansionDistance + horizontalExpansionDistance;
+        const shortestDistance = observedVerticalDistance + observedHorizontalDistance + ((verticalExpansionDistance + horizontalExpansionDistance) * EXPANSION_MULTIPLIER);
         // console.debug('shortest distance:', shortestDistance)
         shortestDistanceSum += shortestDistance;
     });
